@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Especial</title>
+
+    <style>
+        body{
+            background: url('https://static.vecteezy.com/ti/vetor-gratis/p3/16723422-coracoes-de-contorno-branco-em-um-pano-de-fundo-vermelho-padrao-romantico-bonito-fundo-sem-emenda-dia-dos-namorados-decoracao-para-um-casamento-aniversario-outro-feriado-ilustracaoial-vetor.jpg') no-repeat center center fixed; /* Substitua 'URL_DA_IMAGEM' pelo URL real da sua imagem */
+    background-size: cover;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+        }
+
+        .painel {
+            background-color: white;
+            width: 500px;
+            border: 2px solid black;
+            border-radius: 20px;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s; /* Tempo do pisca alterado para 0.3s */
+        }
+
+        #pergunta {
+            margin-bottom: 20px;
+        }
+
+        .opcoes {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .opcao {
+            margin: 10px;
+            padding: 10px;
+            width: 200px;
+            cursor: pointer;
+            border: 2px solid black;
+            border-radius: 10px;
+            background-color: red;
+            color: white;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .opcao:hover {
+            background-color: white;
+            color: red;
+            border: 2px solid red;
+            
+        }
+
+        #resultado {
+            margin-top: 20px;
+            color: red;
+        }
+
+        .acerto {
+            background-color: rgba(0, 255, 0, 0.945); /* Verde mais transparente */
+        }
+
+        .erro {
+            background-color: rgba(238, 99, 99, 0.952); /* Vermelho mais transparente */
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="painel" id="quiz-container">
+        <h1>Quiz Especial</h1>
+        <div id="pergunta"></div>
+        <div class="opcoes" id="opcoes"></div>
+        <div id="resultado"></div>
+    </div>
+
+    <audio preload="auto" src="audios\certo.mp3"></audio>
+    <audio id="audio2" preload="auto" src="audios\errado.mp3"></audio>
+
+    <script>
+        const successSound = document.querySelector('audio')
+        successSound.load();
+        successSound.volume = 0.2;
+
+        const wrongSound = document.querySelector('audio[id="audio2"]')
+        
+
+        const perguntas = [
+            {
+                pergunta: "Qual foi a data que eu te pedi em namoro pela primeira vez?",
+                opcoes: ["06/11/2022", "11/11/2022", "12/11/2022", "10/11/2022"],
+                resposta: "11/11/2022"
+            },
+            {
+                pergunta: "Qual minha comida favorita de todas?",
+                opcoes: ["Batata Frita", "Bolinha de Queijo", "Pizza", "Coxinha"],
+                resposta: "Pizza"
+            },
+            {
+                pergunta: "Qual foi a parte do corpo que ja quebrei?",
+                opcoes: ["Braço", "Perna", "Dedo", "Pulso"],
+                resposta: "Pulso"
+            },
+            {
+                pergunta: "Qual dia da semana você me pediu em namoro dezembro?",
+                opcoes: ["Sabado", "Domingo", "Segunda", "Quinta"],
+                resposta: "Domingo"
+            },
+            {
+                pergunta: "Na nossa primeira metadinha no TT, de qual dorama era os personagens do icon?",
+                opcoes: ["Blue Birthday", "Snowdrop", "Business Proposal", "Alchemy of Souls"],
+                resposta: "Alchemy of Souls"
+            },
+            {
+                pergunta: "Quem disse te amo primeiro?",
+                opcoes: ["Davi", "Mariana"],
+                resposta: "Mariana"
+            },
+            {
+                pergunta: "A primeira vez que você ligou a camera pra mim foi pra me mostrar uma coisa, o que era?",
+                opcoes: ["Album do BLACKPINK", "Seu quarto", "Um sinal fofo com as mãos"],
+                resposta: "Um sinal fofo com as mãos"
+            },
+            {
+                pergunta: "Qual a primeira musica que dedicamos juntos um ao outros?",
+                opcoes: ["Enchanted", "Wanna be yours", "Love Maybe (OST Business Proposal)"],
+                resposta: "Enchanted"
+            },
+            {
+                pergunta: "Em setembro, eu disse que ia te enviar um presente no natal com uma embalagem lilás, o que era?",
+                opcoes: ["Uma Bomba", "Ursinho", "Cartinha", "Chocolate"],
+                resposta: "Uma Bomba"
+            },
+            {
+                pergunta: "Quem ama mais?",
+                opcoes: ["Davi", "Mariana"],
+                resposta: "Davi"
+            }
+        ];
+
+        let indicePergunta = 0;
+        let acertos = 0;
+
+        function exibirPergunta() {
+            const perguntaAtual = perguntas[indicePergunta];
+            const divPergunta = document.getElementById("pergunta");
+            const divOpcoes = document.getElementById("opcoes");
+            const divResultado = document.getElementById("resultado");
+            const divPainel = document.getElementById("quiz-container");
+            
+
+            // Remover as classes de acerto/erro ao mostrar uma nova pergunta
+            divPainel.classList.remove("acerto", "erro");
+
+            divPergunta.textContent = perguntaAtual.pergunta;
+            divOpcoes.innerHTML = "";
+
+            perguntaAtual.opcoes.forEach(opcao => {
+                const divOpcao = document.createElement("div");
+                divOpcao.className = "opcao";
+                divOpcao.textContent = opcao;
+                divOpcao.onclick = () => verificarResposta(opcao);
+                divOpcoes.appendChild(divOpcao);
+
+                
+            });
+
+            divResultado.textContent = "";
+        }
+
+        function verificarResposta(respostaEscolhida) {
+            const perguntaAtual = perguntas[indicePergunta];
+            const divResultado = document.getElementById("resultado");
+            const divPainel = document.getElementById("quiz-container");
+
+            if (respostaEscolhida === perguntaAtual.resposta) {
+                playSuccessSound();
+                acertos++;
+                
+
+                // Adicionar a classe de acerto para destacar o painel
+                divPainel.classList.add("acerto");
+            } else {
+                
+                
+
+                // Adicionar a classe de erro para destacar o painel
+                divPainel.classList.add("erro");
+                playwrongSound();
+            }
+
+            indicePergunta++;
+
+            if (indicePergunta < perguntas.length) {
+                setTimeout(exibirPergunta, 500); // Tempo reduzido para 0.5s
+            } else {
+                setTimeout(() => exibirResultadoFinal(acertos), 1000);
+            }
+        }
+
+        function exibirResultadoFinal(acertos) {
+            const divPergunta = document.getElementById("pergunta");
+            const divOpcoes = document.getElementById("opcoes");
+            const divResultado = document.getElementById("resultado");
+
+            divPergunta.textContent = `Você acertou ${acertos} de ${perguntas.length} perguntas!`;
+
+            if (acertos === perguntas.length) {
+                divResultado.innerHTML = `<a href="ainda_nao_decidido.html" class="opcao">Continuar</a>`;
+            } else {
+                divResultado.innerHTML = `<a href="quiz.html" class="opcao">Tentar Novamente</a>`;
+            }
+
+            divOpcoes.innerHTML = "";
+        }
+        function playSuccessSound() {
+            successSound.currentTime = 0;
+            successSound.play();
+        }
+        function playwrongSound() {
+            wrongSound.load();
+            wrongSound.volume = 0.2;
+            wrongSound.currentTime = 1;
+            wrongSound.play();
+        }
+
+        window.onload = exibirPergunta;
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Sim</title>
+
+    <style>
+        body{
+            background: url('https://static.vecteezy.com/ti/vetor-gratis/p3/16723422-coracoes-de-contorno-branco-em-um-pano-de-fundo-vermelho-padrao-romantico-bonito-fundo-sem-emenda-dia-dos-namorados-decoracao-para-um-casamento-aniversario-outro-feriado-ilustracaoial-vetor.jpg') no-repeat center center fixed; /* Substitua 'URL_DA_IMAGEM' pelo URL real da sua imagem */
+    background-size: cover;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+        }
+        .painel{
+            margin: auto;
+            background-color: white;
+            width: 500px;
+            height: 500px;
+            border-radius: 20px;
+            border: 2px solid black;
+            text-align: center;
+            padding-top: 50px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        #sim{
+            position: absolute;
+            height: 40px;
+            width: 90px;
+            background-color: red;
+            border: 2px solid red;
+            border-radius: 10px;
+            color: white;
+            margin-left: 40px;
+            cursor: pointer;
+        }
+        #nao{
+            position: absolute;
+            height: 40px;
+            width: 90px;
+            background-color: red;
+            border: 2px solid red;
+            border-radius: 10px;
+            color: white;
+            margin-left: 145px;
+            cursor: pointer;
+
+        }
+        #diario{
+            position: absolute;
+            height: 40px;
+            width: 60px;
+            background-color: red;
+            border: 2px solid red;
+            border-radius: 10px;
+            color: white;
+            margin-left: 250px;
+            cursor: pointer;
+        }
+        #sim:hover, #nao:hover, #diario:hover {
+            background-color: white;
+            color: red;
+        }
+        #coracao{
+            margin-top: 115px;
+            margin-left: 10px;
+        }
+        h3 {
+            margin: 5px 0; /* Ajuste o espaçamento superior e inferior conforme necessário */
+        }
+       
+
+        
+
+    </style>
+
+</head>
+<body>
+    <div class="painel">
+        <h1>Você acertouuu</h1>
+        <p>
+        <h3>Agora lê com atenção!!! Pra desbloquear cada presente, </h3>
+        <h3>você vai ter que passar por alguns mini-games,</h3>
+        <h3>cada presente vai ter um joguinho diferente!</h3>
+    </p>
+        <a href="jogo_da_memoria.html"><button id= "sim">Presente 1</button></a>
+        <a href="quiz.html"><button id= "nao" >Presente 2</button></a>
+        <a href="diario.html"><button id = "diario">Diário</button></a>
+        <img id ="coracao" src="https://img1.picmix.com/output/stamp/normal/4/3/6/5/285634_982db.gif">
+        
+       
+        
+    </div>
+</body>
+</html>

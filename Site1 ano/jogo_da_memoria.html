@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo Romântico</title>
+    <style>
+         body{
+            background: url('https://static.vecteezy.com/ti/vetor-gratis/p3/16723422-coracoes-de-contorno-branco-em-um-pano-de-fundo-vermelho-padrao-romantico-bonito-fundo-sem-emenda-dia-dos-namorados-decoracao-para-um-casamento-aniversario-outro-feriado-ilustracaoial-vetor.jpg') no-repeat center center fixed; /* Substitua 'URL_DA_IMAGEM' pelo URL real da sua imagem */
+    background-size: cover;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+        }
+
+        .painel {
+            background-color: white;
+            width: 500px;
+            border: 2px solid red;
+            border-radius: 20px;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .game-container {
+            display: flex;
+            
+            background-color: white;
+            justify-content: center;
+            flex-wrap: wrap;
+            border: 3px solid #030303; /* Cor da borda vermelha */
+            border-radius: 10px;
+            width: 500px; /* Largura do painel ajustada */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .card {
+            width: 80px;
+            height: 80px;
+            margin: 10px;
+            background-color: red;
+            border: 2px solid black;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .card .card-inner {
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+
+        .card.flip .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card .card-front,
+        .card .card-back {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            border-radius: 7px;
+            justify-content: center;
+        }
+
+        .card .card-front {
+            background-color: #f80000; /* Cor da frente da carta */
+            z-index: 2;
+        }
+
+        .card .card-back {
+            background-color: #fff; /* Cor do verso da carta */
+            transform: rotateY(180deg);
+            z-index: 1;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            border-radius: 7px;
+            object-fit: cover; /* Garante que a imagem cubra o conteúdo sem distorção */
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: red;
+        }
+        .game-container h1,
+        .game-container h3 {
+            margin: 10px 0;
+            text-align: center; /* Centralizar o texto */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-container">
+        <h1>Jogo da memória das suas favs  👉👈</h1>
+        <h3>Pra virar as cartas é só clicar nelas mozinho</h3>
+        <div class="card" data-framework="yeri">
+            <div class="card-inner">
+                <div class="card-front"></div>
+                <div class="card-back">
+                    <img src="https://i.pinimg.com/1200x/1b/85/f1/1b85f1e26a85d7b0f43f6ff1d9f7a924.jpg" alt="Yeri">
+                </div>
+            </div>
+        </div>
+        <!-- Adicione outras cartas com a mesma estrutura -->
+        <div class="card" data-framework="joy">
+            <div class="card-inner">
+                <div class="card-front"></div>
+                <div class="card-back">
+                    <img src="https://i.pinimg.com/736x/8f/1c/d0/8f1cd0e10caf1f56b4feaf22ccb56f04.jpg" alt="Joy">
+                </div>
+            </div>
+        </div>
+        <div class="card" data-framework="yeri">
+            <div class="card-inner">
+                <div class="card-front"></div>
+                <div class="card-back">
+                    <img src="https://i.pinimg.com/1200x/1b/85/f1/1b85f1e26a85d7b0f43f6ff1d9f7a924.jpg" alt="Yeri">
+                </div>
+            </div>
+        </div>
+        <div class="card" data-framework="joy">
+            <div class="card-inner">
+                <div class="card-front"></div>
+                <div class="card-back">
+                    <img src="https://i.pinimg.com/736x/8f/1c/d0/8f1cd0e10caf1f56b4feaf22ccb56f04.jpg" alt="Joy">
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-framework="gaeul">
+            <div class="card-inner">
+                <div class="card-front"></div>
+                <div class="card-back">
+                    <img src="https://64.media.tumblr.com/efeffb499f6b454d1b5f0374032bcb69/d0b4117437f1a9c3-5f/s1280x1920/11fce10d0848f55df5d150a3a3f567a3774663d0.png" alt="Gaeul">
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-framework="gaeul">
+            <div class="card-inner">
+                <div class="card-front"></div>
+                <div class="card-back">
+                    <img src="https://64.media.tumblr.com/efeffb499f6b454d1b5f0374032bcb69/d0b4117437f1a9c3-5f/s1280x1920/11fce10d0848f55df5d150a3a3f567a3774663d0.png" alt="Gaeul">
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-framework="hanni">
+            <div class="card-inner">
+                <div class="card-front"></div>
+                <div class="card-back">
+                    <img src="https://media.tenor.com/CenP3_sTtGcAAAAC/hanni-newjeans.gif" alt="Hanni">
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-framework="hanni">
+            <div class="card-inner">
+                <div class="card-front"></div>
+                <div class="card-back">
+                    <img src="https://media.tenor.com/CenP3_sTtGcAAAAC/hanni-newjeans.gif" alt="Hanni">
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-framework="jennie">
+            <div class="card-inner">
+                <div class="card-front"></div>
+                <div class="card-back">
+                    <img src="https://64.media.tumblr.com/cb4a377d6af72d68c9068598bd47a9e2/834812e1a2044941-19/s1280x1920/c578a007225fe2f51706c5819bdc179480759db4.jpg" alt="Jennie">
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-framework="jennie">
+            <div class="card-inner">
+                <div class="card-front"></div>
+                <div class="card-back">
+                    <img src="https://64.media.tumblr.com/cb4a377d6af72d68c9068598bd47a9e2/834812e1a2044941-19/s1280x1920/c578a007225fe2f51706c5819bdc179480759db4.jpg" alt="Jennie">
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-framework="ningning">
+            <div class="card-inner">
+                <div class="card-front"></div>
+                <div class="card-back">
+                    <img src="https://i.pinimg.com/736x/ff/e3/b1/ffe3b1b47017a9c34194a0e0e545ec52.jpg" alt="Ningning">
+                </div>
+            </div>
+        </div>
+        <div class="card" data-framework="ningning">
+            <div class="card-inner">
+                <div class="card-front"></div>
+                <div class="card-back">
+                    <img src="https://i.pinimg.com/736x/ff/e3/b1/ffe3b1b47017a9c34194a0e0e545ec52.jpg" alt="Ningning">
+                </div>
+            </div>
+        </div>
+        
+        <div id="result"></div>
+        
+        <div id="victory-button" style="display: none;">
+        </div>
+    </div>
+
+    <audio preload="auto" src="audios\certo.mp3"></audio>
+
+    <script>
+        const cards = document.querySelectorAll('.card');
+        const successSound = document.querySelector('audio')
+        successSound.volume = 0.2;
+
+        let hasFlippedCard = false;
+        let lockBoard = false;
+        let firstCard, secondCard;
+
+        function flipCard() {
+            if (lockBoard) return;
+            if (this === firstCard) return;
+
+            this.classList.add('flip');
+
+            if (!hasFlippedCard) {
+                hasFlippedCard = true;
+                firstCard = this;
+                return;
+            }
+
+            secondCard = this;
+            checkForMatch();
+        }
+
+        function checkForMatch() {
+            let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
+
+            isMatch ? disableCards() : unflipCards();
+        }
+
+        function disableCards() {
+            firstCard.removeEventListener('click', flipCard);
+            secondCard.removeEventListener('click', flipCard);
+            playSuccessSound();
+            checkForVictory();
+
+            resetBoard();
+        }
+
+        function unflipCards() {
+            lockBoard = true;
+
+            setTimeout(() => {
+                firstCard.classList.remove('flip');
+                secondCard.classList.remove('flip');
+
+                resetBoard();
+            }, 1000);
+        }
+
+        function resetBoard() {
+            [hasFlippedCard, lockBoard] = [false, false];
+            [firstCard, secondCard] = [null, null];
+        }
+        function playSuccessSound() {
+            successSound.currentTime = 0;
+            successSound.play();
+        }
+
+        function showVictoryMessage() {
+            alert("Parabéns! Você completou o jogo!");
+        window.location.href = 'index.html';  // Substitua 'outra_pagina.html' pelo URL desejado
+    createVictoryButton();
+}
+
+function checkForVictory() {
+    if (document.querySelectorAll('.flip').length === cards.length) {
+        setTimeout(showVictoryMessage, 500); // Adicionando um pequeno atraso antes de mostrar a mensagem de vitória
+    }
+}
+
+function createVictoryButton() {
+    const button = document.createElement('button');
+    button.innerHTML = 'Reiniciar Jogo';
+    button.id = 'victory-button';
+    button.addEventListener('click', restartGame);
+    
+    document.body.appendChild(button);
+}
+       
+
+        function displayVictory() {
+            document.querySelector('.game-container').classList.add('success');
+        }
+        (function shuffle() {
+            cards.forEach(card => {
+                let randomPos = Math.floor(Math.random() * 12);
+                card.style.order = randomPos;
+            });
+        })();
+
+        cards.forEach(card => card.addEventListener('click', flipCard));
+    </script>
+
+</body>
+</html>

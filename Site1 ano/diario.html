@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diário Virtual</title>
+
+    <style>
+        body {
+            background: url('https://static.vecteezy.com/ti/vetor-gratis/p3/16723422-coracoes-de-contorno-branco-em-um-pano-de-fundo-vermelho-padrao-romantico-bonito-fundo-sem-emenda-dia-dos-namorados-decoracao-para-um-casamento-aniversario-outro-feriado-ilustracaoial-vetor.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .painel {
+            margin: auto;
+            background-color: white;
+            border: 2px solid black;
+            width: 500px;
+            height: 500px;
+            border-radius: 20px;
+            text-align: center;
+            padding-top: 20px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        #diario {
+            width: 80%;
+            height: 280px;
+            margin: 20px auto;
+            padding: 10px;
+            border: 2px solid red;
+            border-radius: 10px;
+            resize: none;
+        }
+
+        #proximo, #voltar {
+            height: 40px;
+            width: 80px;
+            background-color: red;
+            border: 2px solid black;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            margin-top: -10px;
+            margin-right: 5px;
+        }
+
+        #proximo:hover, #voltar:hover {
+            background-color: white;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="painel">
+        <h1>Diário Virtual</h1>
+        <textarea id="diario" placeholder="Leia suas mensagens aqui..." readonly></textarea>
+        <br>
+        <button id="voltar" onclick="paginaAnterior()">Voltar a Anterior</button>
+        <button id="proximo" onclick="proximaPagina()">Próxima Página</button>
+    </div>
+
+    <script>
+        var paginas = [
+            "OIIIIII MO, provavelmente você vai estar lendo isso no dia que estivermos completando 1 ano de namoro 💕, então, eu vou tentar escrever aqui todos os dias até o dia 11 alguma coisinha fofa pra você ok? \n\nComeçando: Mozao, eu amo muito vc, eu sei que eu falo isso direto, mas eu amo MUITO você mesmo, você é a primeira pessoa e eu quero que seja a única que eu ame dessa forma, eu amo cada traço seu, tudo sobre você, eu amo sua existência, você é meu tudo e a coisa mais importante que já entrou na minha vida desde sempre <3 Eu amo tanto quando passamos o dia junto, eu amo tanto quando você é fofa comigo, quando me conta coisas sobre seu dia, coisas que você gosta, coisas que você viu por aí, alguma noticia dos nossos doramas ou grupos favs, eu amo quando você fala de qualquer assunto comigo",
+            "eu amo quando você tá toda animadinha me contando algo que você goste, que comprou ou que ainda quer comprar, você é a unica pessoa que consegue me fazer escrever textos gigantes mesmo eu tendo a criatividade de uma pedra e não saber formular um paragrafo direito, eu sei que já te contei isso mil vezes, mas eu de verdade, eu AMEI você desdo primeiro segundo que a gente se conheceu, não sei explicarr, mas sempre senti algo especial por você desde quando eu só te via falando no squad e nem falava com você ainda, tanto que eu quis entrar no ludo só pra ter interação com você 👉👈, e eu consegui né 😁😁😁, eu amava quando a gente passava a noite a madrugada toda conversando, você lembra que horas se passavam e pareciam minutos? Eu não me arrependo de nenhuma madrugada que passei com você e eu faria isso tudo de novo mil vezes <3",
+            "Uma coisa que já te falei mtooo tbm, é sobre não achar ninguém bonita além de você, e tipo, eu não falo isso por falar sabe, eu REALMENTE não consigo achar alguém bonita sem ser você, pra mim beleza = você, não existe nenhuma outra pessoa que chegue aos seus pés p mim, você diz q sente a mesma coisa cmg mas duvido 😪, no seu tt antes de me conhecer todo dia era vc falando que um ator ou idol diferente era seu marido e 'boyfriend material' 😡😡😡 eu tenho ciumes disso tá. Qnd vc dizia q tinha autoestima baixa e se achava feia, eu ficava pensando 'Mano como alguém tão linda e perfeita se acha feia???' pq eu vejo você como se tipo, FOSSE PERFEITA, eu não consigo achar defeitos na sua aparência nem no seu corpo nem nada, eu amo mto mto tudinho de vdd, e sempre vou amar <3",
+            "Eu sei que as vezess eu sou meloso e fico reclamando/pedindo que você seja carinhosa na mesma intensidade que eu, mas é que essa é minha forma de ver que você gosta de mim, você não tem noção de como eu amo e fico bobinho quando você fica sendo carinhosa cmg e dizendo coisas fofas, até coisas basicas, você dizendo que quer passar o dia cmg e gosta disso, ou que ama ficar cmg, essas coisas me deixam mto feliz, eu qria q vc fosse mais assim, NA VDD VC JÁ FOI ASSIM NÉ, nos primeiros 2 meses você era super carinhosa e me dizia varias coisinhas fofas e legais e do nada parou e até hj n sei pq 😪, enfim, a falta dessa forma carinhosa e fofa as vzs me faz pensar coisas ruins como exemplo, as vzs eu acho q vc n gosta mais tanto de mim igual antes ou n ta mais apaixonada e por isso não me trata mais daquela forma 😌",
+            "Pq tipo, no inicio você era a mais carinhosa e romântica da relação, ai isso mudou do nada e agora eu ganho por muito de você nisso 😪\n\n\n Agora eu to com medo de escrever demais e você não ler tudo, vou tentar não exagerar muito pq ainda pretendo fazer mtos presentinhos pra você por aqui, sabia que uma coisa que eu amava MTO e ainda amo mas vc parou, que era quando você enviava varias fotinhas do nada sem maquiagem e sem filtro nenhum, SÉRIO VC É A COISA MAIS PFTA SEM MAKE E FILTRO, SEUS DETALHESZINHOS, TUDINHO EM VC 🦋🦋🦋, eu sei q vc n gosta de tirar sem filtro, MAS AMOR EU TE ACHO A COISA MAIS LINDA.",
+            "Mo eu sei q vc ta tendo q estudar mas eu to com muita sdds do nosso tempo juntinhos e como casal, to com sdds de ver doramas e videos cm vc, de jogar plato, meu dia é mais sem graça quando eu to sem você, eu meio que ja to me acostumando, mas as vezes bate uma sdds mto forte que eu só queria ficar com você uns 30 minutinhos rindo e vendo algo, conversando, jogando, eu qria passar mais tempo com você, eu qria tanto que morassemos juntos logo ou perto um do outro, eu nao vejo a hora de poder te abraçar todo dia, vc é o amor da minha vida e eu te quero pra sempre, eu n quero q nunca nada nos separe, eu qro passar minha vida toda com você não importa como ❤",
+            "Oii mo, hoje eu to meio triste com umas coisas, eu queria q vc me desse atenção só um pouquinho, eu chorei muito hj, mas eu n te contei, e nem vou te contar, provavelmente vc só vai descobrir por aqui, mas eu queria um pouco mais de atenção sua 🥺 to com sdds,  mas to com medo de vc n tar sentindo a mesma sdds q eu ou n tar sentindo sdds, eu n qro q vc esqueça de mim aos poucos, eu to sentindo que a gnt ta se comunicando mto pouco, ta sendo praticamente só bom dia e vc só volta dps pra dormir, eu to com sdds bê",
+            "Mooo, hj eu tava lembrando dos seus audios cantando que você mandava ano passado, E VC NUNCA MAIS MANDOUUUUU EU QRO MAIS, VC MANDAVA AUDIO CANTANDO LOVESICK GIRLS E KPOP E ERA PFTOS EU AMAVA MUITO PQ VC PAROUUUU, eu fiquei pesquisando coisa na nossa dm do insta tentando achar esses audios e achei alguns e mdss 🦋🦋🦋🦋, VOCÊ TODA ANIMADINHA CANTANDO SÉRIO, falando em áudio, EU SINTO SDDS DA SUA VOZ DE BEBÊ QUANDO VC FALAVA CMG, VC PAROUUUUUUU, EU QRO MAIS EU AINDA SOU SEU BEBÊ N DEIXEI PARAR, é pra mandar audio com voz de bb e sendo fofa 😾😾😾",
+            
+        ];
+
+        var paginaAtual = 0;
+
+        function salvarDiario() {
+            // Nada a salvar, pois é somente leitura
+        }
+
+        function atualizarPagina() {
+            document.getElementById("diario").value = paginas[paginaAtual];
+        }
+
+        function proximaPagina() {
+            if (paginaAtual < paginas.length - 1) {
+                paginaAtual++;
+                atualizarPagina();
+            }
+        }
+
+        function paginaAnterior() {
+            if (paginaAtual > 0) {
+                paginaAtual--;
+                atualizarPagina();
+            }
+        }
+
+        // Carrega a primeira página ao carregar a página
+        document.addEventListener('DOMContentLoaded', function () {
+            atualizarPagina();
+        });
+    </script>
+
+</body>
+</html>
